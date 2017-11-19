@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: E:\04 软件编程\C# 程序\01 不用\新建文件夹\程序\NIRQUEST.exe-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C61871B-EECC-4957-8AB8-D60138800D1B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>蚕蛹快速分拣系统</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="ZedGraph">
+      <HintPath>lib\ZedGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="NETSpam">
+      <HintPath>lib\NETSpam.dll</HintPath>
+    </Reference>
+    <Reference Include="NETOmniDriver">
+      <HintPath>lib\NETOmniDriver.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FrmGetSpecSet.Designer.cs" />
+    <Compile Include="LoginForm.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="DataHandling.cs" />
+    <Compile Include="DataIO.cs" />
+    <Compile Include="Form_offLine.cs" />
+    <Compile Include="FrmGetSpec.cs" />
+    <Compile Include="FrmSetting.cs" />
+    <Compile Include="Home.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ripsPreDeal.cs" />
+    <Compile Include="SimcaPrd.cs" />
+    <Compile Include="Spectrometer.cs" />
+    <Compile Include="Start.cs" />
+    <Compile Include="subspace.cs" />
+    <Compile Include="FrmGetSpecAuto.cs" />
+    <Compile Include="cMatrixLib.cs" />
+    <Compile Include="1cMatrixLib.cs" />
+    <Compile Include="2cMatrixLib.cs" />
+    <Compile Include="3cMatrixLib.cs" />
+    <Compile Include="4cMatrixLib.cs" />
+    <Compile Include="5cMatrixLib.cs" />
+    <Compile Include="6cMatrixLib.cs" />
+    <Compile Include="7cMatrixLib.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="JSDU\Form_offLine.resx" />
+    <EmbeddedResource Include="JSDU\FrmGetSpec.resx" />
+    <EmbeddedResource Include="JSDU\FrmGetSpecAuto.resx" />
+    <EmbeddedResource Include="JSDU\FrmSetting.resx" />
+    <EmbeddedResource Include="JSDU\Home.resx" />
+    <EmbeddedResource Include="JSDU\Start.resx" />
+    <EmbeddedResource Include="NIRQUEST\LoginForm.resx" />
+    <EmbeddedResource Include="NIRQUEST\Properties\Resources.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

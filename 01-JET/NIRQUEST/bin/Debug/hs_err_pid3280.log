@@ -1,0 +1,21 @@
+#
+# An unexpected error has been detected by Java Runtime Environment:
+#
+#  Internal Error (safepoint.cpp:558), pid=3280, tid=3948
+#  Error: Deadlock in safepoint code.  Should have called back to the VM before blocking.
+#
+# Java VM: Java HotSpot(TM) Client VM (11.2-b01 mixed mode windows-x86)
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x10fbbc00):  JavaThread "Thread-523347" [_thread_in_native_trans, id=3948, stack(0x16990000,0x16a90000)]
+
+Stack: [0x16990000,0x16a90000]
+[error occurred during error reporting (printing stack bounds), id 0xe0000000]
+
+
+---------------  P R O C E S S  ---------------
+

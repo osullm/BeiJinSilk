@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4BF80AF1-A72A-479D-B292-580EA4BD6C25}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>sik</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="NETOmniDriver, Version=1.6.0.0, Culture=neutral, PublicKeyToken=5ceb6b3940bb24a4, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NETOmniDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="ZedGraph" />
+    <Reference Include="NETSpam" />
+    <Reference Include="System.Management" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="MatrixLibrary\MatrixLibraryExceptions.cs" />
+    <Compile Include="MatrixLibrary\MatrixNullException.cs" />
+    <Compile Include="MatrixLibrary\MatrixDimensionException.cs" />
+    <Compile Include="MatrixLibrary\MatrixNotSquare.cs" />
+    <Compile Include="MatrixLibrary\MatrixDeterminentZero.cs" />
+    <Compile Include="MatrixLibrary\VectorDimensionException.cs" />
+    <Compile Include="MatrixLibrary\MatrixSingularException.cs" />
+    <Compile Include="MatrixLibrary\Matrix.cs" />
+    <Compile Include="JSDU\DataHandling.cs" />
+    <Compile Include="JSDU\DataIO.cs" />
+    <Compile Include="CalcuPassWord\Encryption.cs" />
+    <Compile Include="CalcuPassWord\ChneckReg.cs" />
+    <Compile Include="JSDU\Form_offLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JSDU\FrmGetSpec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NIRQUEST\FrmGetSpecSet.cs" />
+    <Compile Include="JSDU\FrmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JSDU\Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NIRQUEST\LoadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NIRQUEST\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JSDU\Program.cs" />
+    <Compile Include="NIRQUEST\Properties\Resources.cs" />
+    <Compile Include="NIRQUEST\RegOperate.cs" />
+    <Compile Include="JSDU\ripsPreDeal.cs" />
+    <Compile Include="NIRQUEST\Properties\Settings.cs" />
+    <Compile Include="JSDU\SimcaPrd.cs" />
+    <Compile Include="JSDU\Spectrometer.cs" />
+    <Compile Include="JSDU\Subspace.cs" />
+    <Compile Include="JSDU\FrmGetSpecAuto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="JSDU.Form_offLine.resources" />
+    <EmbeddedResource Include="JSDU.FrmGetSpec.resources" />
+    <EmbeddedResource Include="JSDU.FrmSetting.resources" />
+    <EmbeddedResource Include="JSDU.Home.resources" />
+    <EmbeddedResource Include="NIRQUEST.LoadForm.resources" />
+    <EmbeddedResource Include="NIRQUEST.LoginForm.resources" />
+    <EmbeddedResource Include="NIRQUEST.Properties.Resources.resources" />
+    <EmbeddedResource Include="JSDU.FrmGetSpecAuto.resources" />
+  </ItemGroup>
+</Project>

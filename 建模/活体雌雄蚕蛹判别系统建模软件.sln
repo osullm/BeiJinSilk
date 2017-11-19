@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "活体雌雄蚕蛹判别系统建模软件", "活体雌雄蚕蛹判别系统建模软件.csproj", "{1F6F8E22-4BA1-4BA0-98CA-7250F5F19CC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-01", "..\test-01\test-01.csproj", "{6BEBCB1A-FE78-4A5A-AB79-7E98DF48DF93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F6F8E22-4BA1-4BA0-98CA-7250F5F19CC4}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{1F6F8E22-4BA1-4BA0-98CA-7250F5F19CC4}.Debug|x86.ActiveCfg = Debug|x86
+		{1F6F8E22-4BA1-4BA0-98CA-7250F5F19CC4}.Debug|x86.Build.0 = Debug|x86
+		{1F6F8E22-4BA1-4BA0-98CA-7250F5F19CC4}.Release|Any CPU.ActiveCfg = Release|x86
+		{1F6F8E22-4BA1-4BA0-98CA-7250F5F19CC4}.Release|x86.ActiveCfg = Release|x86
+		{1F6F8E22-4BA1-4BA0-98CA-7250F5F19CC4}.Release|x86.Build.0 = Release|x86
+		{6BEBCB1A-FE78-4A5A-AB79-7E98DF48DF93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BEBCB1A-FE78-4A5A-AB79-7E98DF48DF93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BEBCB1A-FE78-4A5A-AB79-7E98DF48DF93}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6BEBCB1A-FE78-4A5A-AB79-7E98DF48DF93}.Debug|x86.Build.0 = Debug|Any CPU
+		{6BEBCB1A-FE78-4A5A-AB79-7E98DF48DF93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BEBCB1A-FE78-4A5A-AB79-7E98DF48DF93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BEBCB1A-FE78-4A5A-AB79-7E98DF48DF93}.Release|x86.ActiveCfg = Release|Any CPU
+		{6BEBCB1A-FE78-4A5A-AB79-7E98DF48DF93}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
