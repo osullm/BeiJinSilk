@@ -10,3 +10,9 @@ E:\软件Programs\C#\新建文件夹\程序\建模\obj\x86\Debug\活体雌雄蚕
 E:\软件Programs\C#\BeiJinSilk\建模\bin\Debug\活体雌雄蚕蛹判别系统建模软件.exe.config
 E:\软件Programs\C#\BeiJinSilk\建模\obj\x86\Debug\活体雌雄蚕蛹判别系统建模软件.exe
 E:\软件Programs\C#\BeiJinSilk\建模\obj\x86\Debug\活体雌雄蚕蛹判别系统建模软件.pdb
+E:\软件Programs\C#\BeiJinSilk\建模\bin\Debug\活体雌雄蚕蛹判别系统建模软件.exe
+E:\软件Programs\C#\BeiJinSilk\建模\bin\Debug\活体雌雄蚕蛹判别系统建模软件.pdb
+E:\软件Programs\C#\BeiJinSilk\建模\obj\x86\Debug\活体雌雄蚕蛹判别系统建模软件.csprojResolveAssemblyReference.cache
+E:\软件Programs\C#\BeiJinSilk\建模\obj\x86\Debug\JSDU.Form_offLine.resources
+E:\软件Programs\C#\BeiJinSilk\建模\obj\x86\Debug\Properties.Resources.resources
+E:\软件Programs\C#\BeiJinSilk\建模\obj\x86\Debug\活体雌雄蚕蛹判别系统建模软件.csproj.GenerateResource.Cache

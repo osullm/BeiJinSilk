@@ -10,8 +10,8 @@ namespace test_01
 
         int dataYlength = 385, SpecSkip=4;
         int dataYSkipLength = 96;
-        int selectSetMethod;
-        double selectSetCount = 0.5;
+        //int /*selectSetMethod*/;
+        double selectSetCount =5;
 
         double thresholdAbnormal = 0.2;
         double[] femaleMaDistance, maleMaDistance;
@@ -29,9 +29,9 @@ namespace test_01
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            SIMCA.SIMCA simca = new SIMCA.SIMCA();
-            MWNumericArray x = new double[100];
-            MWArray[] arrayArray = simca.mncn(2, x);
+            //SIMCA.SIMCA simca = new SIMCA.SIMCA();
+            //MWNumericArray x = new double[100];
+            //MWArray[] arrayArray = simca.mncn(2, x);
 
         
         }
@@ -93,13 +93,15 @@ namespace test_01
             //省略去除大于阈值的样品。
             if (radioButtonRandom.Checked)
             {
-                this.selectSet(0,dataYForSelecteSet ,true);
-                selectSetMethod = 0;
+                this.selectSet(0/*dataYForSelecteSet ,true*/);
+                //selectSetMethod = 0;
+                Settings.Default.selectSetMethod = 0;
             }
             else if (radioButtonKS.Checked)
             {
-                this.selectSet(1,dataYForSelecteSet ,true);
-                selectSetMethod = 1;
+                this.selectSet(1/*,dataYForSelecteSet ,true*/);
+                //selectSetMethod = 1;
+                Settings.Default.selectSetMethod = 1;
             }
            
             
@@ -141,86 +143,130 @@ namespace test_01
             //省略去除大于阈值的样品。
             if (radioButtonRandom.Checked)
             {
-                this.selectSet(0, dataYForSelecteSet, false);
-                selectSetMethod = 0;
+                this.selectSet(0);
+                //selectSetMethod = 0;
+                Settings.Default.selectSetMethod = 1;
             }
             else if (radioButtonKS.Checked)
             {
-                this.selectSet(1, dataYForSelecteSet, false);
-                selectSetMethod = 1;
+                this.selectSet(1);
+                Settings.Default.selectSetMethod = 0;
+                //selectSetMethod = 1;
             }
 
         }
-        private void selectSet(int selectSetMethod, double[,] data, bool female)
+
+        private void selectSet(int selectSetMethod)
         {
-
-            int[] numArray2;
-            int[] numArray3;
-            double d = selectSetCount * data.GetLength(0);
+            //if (this.dataGridView1.Rows.Count > 10)
+            //{
+                int[] numArray2;
+                int[] numArray3;
+            //double d = ((this.domainUpDown2.SelectedIndex + 1) * (this.dataGridView1.Rows.Count - 1)) / 10;
+            double d = selectSetCount * dataYForSelecteSet.GetLength(0)/10;
             int nC = (int)Math.Floor(d);
-            double[,] x = new double[this.dataYForSelecteSet.GetLength(0), this.dataYForSelecteSet.GetLength(1)];
-            for (int i = 0; i < x.GetLength(0); i++)
-            {
-                for (int m = 0; m < x.GetLength(1); m++)
+                double[,] x = new double[this.dataYForSelecteSet.GetLength(0), this.dataYForSelecteSet.GetLength(1)];
+                for (int i = 0; i < x.GetLength(0); i++)
                 {
-                    x[i, m] = this.dataYForSelecteSet[i, m];
-                }
-            }
-            ripsPreDeal deal = new ripsPreDeal(x.GetLength(0), x.GetLength(1));
-            if (selectSetMethod == 0)
-            {
-                deal.RandomSet(nC, x, out numArray2, out numArray3);
-            }
-            else
-            {
-                deal.KennardStone(nC, x, out numArray2, out numArray3);
-            }
-
-            if (female)
-            {
-
-                femaleCalData = new double[numArray2.Length, data.GetLength(1)];
-                femaleValData =new double[numArray3.Length, data.GetLength(1)];
-                for (int j = 0; j < numArray2.Length; j++)
-                {
-                    for(int m=0;m<data.GetLength (1);m++)
+                    for (int m = 0; m < x.GetLength(1); m++)
                     {
-                        femaleCalData[j, m] = data[numArray2[j], m];
+                        x[i, m] = this.dataYForSelecteSet[i, m];
                     }
-                    
                 }
-                for (int k = 0; k < numArray3.Length; k++)
+                ripsPreDeal deal = new ripsPreDeal(x.GetLength(0), x.GetLength(1));
+                if (selectSetMethod == 0)
                 {
-                    for (int m = 0; m < data.GetLength(1); m++)
-                    {
-                        femaleValData[k, m] = data[numArray3[k], m];
-                    }
-
+                    deal.RandomSet(nC, x, out numArray2, out numArray3);
                 }
-            }
-            else
-            {
-                maleCalData = new double[numArray2.Length, data.GetLength(1)];
-                maleValData = new double[numArray3.Length, data.GetLength(1)];
-                for (int j = 0; j < numArray2.Length; j++)
+                else
                 {
-                    for (int m = 0; m < data.GetLength(1); m++)
-                    {
-                        maleCalData[j, m] = data[numArray2[j], m];
-                    }
-
+                    deal.KennardStone(nC, x, out numArray2, out numArray3);
                 }
-                for (int k = 0; k < numArray3.Length; k++)
-                {
-                    for (int m = 0; m < data.GetLength(1); m++)
-                    {
-                        maleValData[k, m] = data[numArray3[k], m];
-                    }
-
-                }
-            }
-
+            //Settings.Default.selectSetCount = this.domainUpDown2.SelectedIndex;
+            Settings.Default.selectSetCount =5;
+            Settings.Default.Save();
+            //for (int j = 0; j < numArray2.Length; j++)
+            //{
+            //    this.dataGridView1.Rows[numArray2[j]].Cells[1].Value = "校正集";
+            //}
+            //for (int k = 0; k < numArray3.Length; k++)
+            //{
+            //    this.dataGridView1.Rows[numArray3[k]].Cells[1].Value = "验证集";
+            //}
+            //}
         }
+
+
+        //private void selectSet(int selectSetMethod)
+        //{
+
+        //    int[] numArray2;
+        //    int[] numArray3;
+        //    double d = selectSetCount * data.GetLength(0);
+        //    int nC = (int)Math.Floor(d);
+        //    double[,] x = new double[this.dataYForSelecteSet.GetLength(0), this.dataYForSelecteSet.GetLength(1)];
+        //    for (int i = 0; i < x.GetLength(0); i++)
+        //    {
+        //        for (int m = 0; m < x.GetLength(1); m++)
+        //        {
+        //            x[i, m] = this.dataYForSelecteSet[i, m];
+        //        }
+        //    }
+        //    ripsPreDeal deal = new ripsPreDeal(x.GetLength(0), x.GetLength(1));
+        //    if (selectSetMethod == 0)
+        //    {
+        //        deal.RandomSet(nC, x, out numArray2, out numArray3);
+        //    }
+        //    else
+        //    {
+        //        deal.KennardStone(nC, x, out numArray2, out numArray3);
+        //    }
+
+        //    if (female)
+        //    {
+
+        //        femaleCalData = new double[numArray2.Length, data.GetLength(1)];
+        //        femaleValData =new double[numArray3.Length, data.GetLength(1)];
+        //        for (int j = 0; j < numArray2.Length; j++)
+        //        {
+        //            for(int m=0;m<data.GetLength (1);m++)
+        //            {
+        //                femaleCalData[j, m] = data[numArray2[j], m];
+        //            }
+                    
+        //        }
+        //        for (int k = 0; k < numArray3.Length; k++)
+        //        {
+        //            for (int m = 0; m < data.GetLength(1); m++)
+        //            {
+        //                femaleValData[k, m] = data[numArray3[k], m];
+        //            }
+
+        //        }
+        //    }
+        //    else
+        //    {
+        //        maleCalData = new double[numArray2.Length, data.GetLength(1)];
+        //        maleValData = new double[numArray3.Length, data.GetLength(1)];
+        //        for (int j = 0; j < numArray2.Length; j++)
+        //        {
+        //            for (int m = 0; m < data.GetLength(1); m++)
+        //            {
+        //                maleCalData[j, m] = data[numArray2[j], m];
+        //            }
+
+        //        }
+        //        for (int k = 0; k < numArray3.Length; k++)
+        //        {
+        //            for (int m = 0; m < data.GetLength(1); m++)
+        //            {
+        //                maleValData[k, m] = data[numArray3[k], m];
+        //            }
+
+        //        }
+        //    }
+
+        //}
 
         private void button5_Click(object sender, EventArgs e)
         {

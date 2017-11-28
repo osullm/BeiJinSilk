@@ -318,6 +318,7 @@
 
         private void bgwCrossVal_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+
         }
 
         private void bgwCrossVal_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -1761,6 +1762,7 @@
                     this.selectSet(1);
                     Settings.Default.selectSetMethod = 1;
                 }
+                //Settings.Default.selectSetCount = this.domainUpDown2.SelectedIndex;
                 Settings.Default.selectSetCount = this.domainUpDown2.SelectedIndex;
                 Settings.Default.Save();
                 this.lblState.Visible = false;
