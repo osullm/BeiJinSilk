@@ -7,6 +7,6 @@ E:\软件Programs\C#\新建文件夹\程序\建模\bin\Debug\活体雌雄蚕蛹�
 E:\软件Programs\C#\新建文件夹\程序\建模\bin\Debug\活体雌雄蚕蛹判别系统建模软件.pdb
 E:\软件Programs\C#\新建文件夹\程序\建模\obj\x86\Debug\活体雌雄蚕蛹判别系统建模软件.exe
 E:\软件Programs\C#\新建文件夹\程序\建模\obj\x86\Debug\活体雌雄蚕蛹判别系统建模软件.pdb
-E:\软件Programs\C#\BeiJinSilk\建模\bin\Debug\活体雌雄蚕蛹判别系统建模软件.exe.config
-E:\软件Programs\C#\BeiJinSilk\建模\obj\x86\Debug\活体雌雄蚕蛹判别系统建模软件.exe
-E:\软件Programs\C#\BeiJinSilk\建模\obj\x86\Debug\活体雌雄蚕蛹判别系统建模软件.pdb
+C:\Users\Administrator\Desktop\BeiJinSilk-master\建模\bin\Debug\活体雌雄蚕蛹判别系统建模软件.exe.config
+C:\Users\Administrator\Desktop\BeiJinSilk-master\建模\obj\x86\Debug\活体雌雄蚕蛹判别系统建模软件.exe
+C:\Users\Administrator\Desktop\BeiJinSilk-master\建模\obj\x86\Debug\活体雌雄蚕蛹判别系统建模软件.pdb

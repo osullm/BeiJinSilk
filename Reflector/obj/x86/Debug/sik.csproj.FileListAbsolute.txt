@@ -3,5 +3,3 @@ E:\软件Programs\C#\新建文件夹\程序\Reflector\bin\Debug\sik.exe
 E:\软件Programs\C#\新建文件夹\程序\Reflector\bin\Debug\sik.pdb
 E:\软件Programs\C#\新建文件夹\程序\Reflector\obj\x86\Debug\sik.exe
 E:\软件Programs\C#\新建文件夹\程序\Reflector\obj\x86\Debug\sik.pdb
-E:\软件Programs\C#\BeiJinSilk\Reflector\obj\x86\Debug\sik.exe
-E:\软件Programs\C#\BeiJinSilk\Reflector\obj\x86\Debug\sik.pdb

@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\BeiJinSilk-master\建模\bin\Debug\活体雌雄蚕蛹判别系统建模软件.exe.config
+C:\Users\Administrator\Desktop\BeiJinSilk-master\建模\bin\Debug\活体雌雄蚕蛹判别系统建模软件.exe
+C:\Users\Administrator\Desktop\BeiJinSilk-master\建模\bin\Debug\活体雌雄蚕蛹判别系统建模软件.pdb
+C:\Users\Administrator\Desktop\BeiJinSilk-master\建模\obj\x86\Debug\silka.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\BeiJinSilk-master\建模\obj\x86\Debug\JSDU.Form_offLine.resources
+C:\Users\Administrator\Desktop\BeiJinSilk-master\建模\obj\x86\Debug\Properties.Resources.resources
+C:\Users\Administrator\Desktop\BeiJinSilk-master\建模\obj\x86\Debug\silka.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\BeiJinSilk-master\建模\obj\x86\Debug\活体雌雄蚕蛹判别系统建模软件.exe
+C:\Users\Administrator\Desktop\BeiJinSilk-master\建模\obj\x86\Debug\活体雌雄蚕蛹判别系统建模软件.pdb

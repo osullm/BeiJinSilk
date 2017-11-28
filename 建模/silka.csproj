@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1F6F8E22-4BA1-4BA0-98CA-7250F5F19CC4}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>活体雌雄蚕蛹判别系统建模软件</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="MWArray, Version=2.10.1.0, Culture=neutral, PublicKeyToken=e1d84a0da19db86f, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MWArray.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="SIMCA" />
+    <Reference Include="ZedGraph" />
+    <Reference Include="System.Management" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="JSDU\DataHandling.cs" />
+    <Compile Include="JSDU\DataIO.cs" />
+    <Compile Include="CalcuPassWord\Encryption.cs" />
+    <Compile Include="CalcuPassWord\ChneckReg.cs" />
+    <Compile Include="JSDU\ListEditView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JSDU\ListEditViewColumnStyle.cs" />
+    <Compile Include="JSDU\ListEditViewItem.cs" />
+    <Compile Include="JSDU\EditViewColumnHeader.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="JSDU\vListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Algorithm\ripsPreDeal.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SIMCA\Properties\Settings.cs" />
+    <Compile Include="JSDU\Form_offLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JSDU\Matrix.cs" />
+    <Compile Include="JSDU\Program.cs" />
+    <Compile Include="JSDU\SimcaPrd.cs" />
+    <Compile Include="SIMCA\Properties\Resources.cs" />
+    <EmbeddedResource Include="JSDU\Form_offLine.resx">
+      <DependentUpon>Form_offLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+</Project>
