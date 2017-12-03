@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -42,16 +42,22 @@
             this.bgwCrossBySimca = new System.ComponentModel.BackgroundWorker();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.bwgAbnormalSample = new System.ComponentModel.BackgroundWorker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtThresholdAbnormal = new System.Windows.Forms.TextBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.domainUpDown2 = new System.Windows.Forms.DomainUpDown();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart_a)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(9, 10);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(12, 12);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 35);
+            this.button1.Size = new System.Drawing.Size(143, 44);
             this.button1.TabIndex = 0;
             this.button1.Text = "导入雌";
             this.button1.UseVisualStyleBackColor = true;
@@ -59,10 +65,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(9, 50);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(12, 62);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 35);
+            this.button2.Size = new System.Drawing.Size(143, 44);
             this.button2.TabIndex = 0;
             this.button2.Text = "导入雄";
             this.button2.UseVisualStyleBackColor = true;
@@ -70,10 +76,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(9, 90);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Location = new System.Drawing.Point(12, 169);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(107, 35);
+            this.button3.Size = new System.Drawing.Size(143, 44);
             this.button3.TabIndex = 0;
             this.button3.Text = "雌--马氏距离";
             this.button3.UseVisualStyleBackColor = true;
@@ -81,10 +87,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(9, 130);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Location = new System.Drawing.Point(12, 217);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(107, 35);
+            this.button4.Size = new System.Drawing.Size(143, 44);
             this.button4.TabIndex = 0;
             this.button4.Text = "雄--马氏距离";
             this.button4.UseVisualStyleBackColor = true;
@@ -92,16 +98,16 @@
             // 
             // chart_a
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart_a.ChartAreas.Add(chartArea4);
-            this.chart_a.Location = new System.Drawing.Point(271, 10);
-            this.chart_a.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            chartArea2.Name = "ChartArea1";
+            this.chart_a.ChartAreas.Add(chartArea2);
+            this.chart_a.Location = new System.Drawing.Point(361, 12);
+            this.chart_a.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chart_a.Name = "chart_a";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
-            series4.Name = "Series1";
-            this.chart_a.Series.Add(series4);
-            this.chart_a.Size = new System.Drawing.Size(410, 362);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
+            series2.Name = "Series1";
+            this.chart_a.Series.Add(series2);
+            this.chart_a.Size = new System.Drawing.Size(547, 452);
             this.chart_a.TabIndex = 1;
             this.chart_a.Text = "chart1";
             // 
@@ -109,11 +115,11 @@
             // 
             this.groupBox1.Controls.Add(this.radioButtonRandom);
             this.groupBox1.Controls.Add(this.radioButtonKS);
-            this.groupBox1.Location = new System.Drawing.Point(121, 18);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(161, 22);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(135, 107);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(180, 134);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "选择方式";
@@ -121,10 +127,10 @@
             // radioButtonRandom
             // 
             this.radioButtonRandom.AutoSize = true;
-            this.radioButtonRandom.Location = new System.Drawing.Point(14, 64);
-            this.radioButtonRandom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButtonRandom.Location = new System.Drawing.Point(19, 80);
+            this.radioButtonRandom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButtonRandom.Name = "radioButtonRandom";
-            this.radioButtonRandom.Size = new System.Drawing.Size(47, 16);
+            this.radioButtonRandom.Size = new System.Drawing.Size(58, 19);
             this.radioButtonRandom.TabIndex = 0;
             this.radioButtonRandom.Text = "随机";
             this.radioButtonRandom.UseVisualStyleBackColor = true;
@@ -133,10 +139,10 @@
             // 
             this.radioButtonKS.AutoSize = true;
             this.radioButtonKS.Checked = true;
-            this.radioButtonKS.Location = new System.Drawing.Point(14, 32);
-            this.radioButtonKS.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButtonKS.Location = new System.Drawing.Point(19, 40);
+            this.radioButtonKS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButtonKS.Name = "radioButtonKS";
-            this.radioButtonKS.Size = new System.Drawing.Size(101, 16);
+            this.radioButtonKS.Size = new System.Drawing.Size(132, 19);
             this.radioButtonKS.TabIndex = 0;
             this.radioButtonKS.TabStop = true;
             this.radioButtonKS.Text = "Kennark-Stone";
@@ -144,10 +150,10 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(9, 170);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Location = new System.Drawing.Point(12, 270);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(107, 35);
+            this.button5.Size = new System.Drawing.Size(143, 44);
             this.button5.TabIndex = 0;
             this.button5.Text = "建模";
             this.button5.UseVisualStyleBackColor = true;
@@ -159,9 +165,10 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(12, 210);
+            this.button6.Location = new System.Drawing.Point(16, 320);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(104, 33);
+            this.button6.Size = new System.Drawing.Size(139, 41);
             this.button6.TabIndex = 3;
             this.button6.Text = "导入模型";
             this.button6.UseVisualStyleBackColor = true;
@@ -169,19 +176,84 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(9, 249);
+            this.button7.Location = new System.Drawing.Point(12, 369);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(104, 33);
+            this.button7.Size = new System.Drawing.Size(139, 41);
             this.button7.TabIndex = 3;
             this.button7.Text = "导入模型";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
+            // bwgAbnormalSample
+            // 
+            this.bwgAbnormalSample.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwgAbnormalSample_DoWork);
+            this.bwgAbnormalSample.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwgAbnormalSample_RunWorkerCompleted);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(161, 220);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 15);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "异常样本阈值:";
+            // 
+            // txtThresholdAbnormal
+            // 
+            this.txtThresholdAbnormal.Location = new System.Drawing.Point(272, 217);
+            this.txtThresholdAbnormal.Name = "txtThresholdAbnormal";
+            this.txtThresholdAbnormal.Size = new System.Drawing.Size(67, 25);
+            this.txtThresholdAbnormal.TabIndex = 5;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(12, 112);
+            this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(143, 44);
+            this.button8.TabIndex = 0;
+            this.button8.Text = "数据截取";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // domainUpDown2
+            // 
+            this.domainUpDown2.Enabled = false;
+            this.domainUpDown2.Items.Add("10%");
+            this.domainUpDown2.Items.Add("20%");
+            this.domainUpDown2.Items.Add("30%");
+            this.domainUpDown2.Items.Add("40%");
+            this.domainUpDown2.Items.Add("50%");
+            this.domainUpDown2.Items.Add("60%");
+            this.domainUpDown2.Items.Add("70%");
+            this.domainUpDown2.Items.Add("80%");
+            this.domainUpDown2.Items.Add("90%");
+            this.domainUpDown2.Location = new System.Drawing.Point(272, 169);
+            this.domainUpDown2.Margin = new System.Windows.Forms.Padding(4);
+            this.domainUpDown2.Name = "domainUpDown2";
+            this.domainUpDown2.ReadOnly = true;
+            this.domainUpDown2.Size = new System.Drawing.Size(67, 25);
+            this.domainUpDown2.TabIndex = 15;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(161, 171);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 15);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "校正样本数量:";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 450);
+            this.ClientSize = new System.Drawing.Size(920, 562);
+            this.Controls.Add(this.domainUpDown2);
+            this.Controls.Add(this.txtThresholdAbnormal);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.groupBox1);
@@ -189,9 +261,10 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -199,6 +272,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -216,6 +290,12 @@
         private System.ComponentModel.BackgroundWorker bgwCrossBySimca;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.ComponentModel.BackgroundWorker bwgAbnormalSample;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtThresholdAbnormal;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.DomainUpDown domainUpDown2;
+        private System.Windows.Forms.Label label2;
     }
 }
 

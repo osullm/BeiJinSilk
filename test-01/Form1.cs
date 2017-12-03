@@ -12,11 +12,15 @@ namespace test_01
 {
     public partial class Form1 : Form
     {
+        //所有double[0,1],其中0为样品个数。其中1为样品中特征长度，如512个波长。
+        List<double[]> originalFemaleData, originalMaleData;//存放原始导入进来的数据
+
+
         Process_FitOffLine offLineClass = new Process_FitOffLine();
         SIMCA.SIMCA simca = new SIMCA.SIMCA();
         ArrayList classLabel = new ArrayList() { "雌", "雄" };
-        int dataYlength = 385, SpecSkip=4;
-        int dataYSkipLength = 96;
+        //int dataYlength = 385, SpecSkip=4;
+        //int dataYSkipLength = 96;
         int selectSetMethod;
         double selectSetCount = 0.5;
 
@@ -25,7 +29,8 @@ namespace test_01
         double[,] dataYForSelecteSet;
 
         double[,] femaleCalData, femaleValData,maleCalData,maleValData;
-
+        Dictionary<string, double[,]> allOriginalCutedData;
+        Dictionary<string, double[,]> CutedMaData=new Dictionary<string, double[,]> ();
         Dictionary<string, double[]> DataCaliSetPreprocessMx = new Dictionary<string, double[]>();
         Dictionary<string, double[]> DataCaliSetPreprocessSx = new Dictionary<string, double[]>();
         Dictionary<string, double[,]> DataCaliSetPreprocess = new Dictionary<string, double[,]>();
@@ -68,7 +73,7 @@ namespace test_01
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            offLineClass.loadFemalTrainData();
+            originalFemaleData=offLineClass.loadData();
         }
         /// <summary>
         /// 导入雄性数据
@@ -77,7 +82,62 @@ namespace test_01
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-            offLineClass.loadMaleTrainData();
+            originalMaleData= offLineClass.loadData();
+        }
+
+        private Dictionary<string, double[,]> cutOrigionalData(List<double[]> origionalFemaleData, List<double[]> origionalMaleData)
+        {
+            int dataYlength = 385, SpecSkip = 4;
+            int dataYSkipLength = 96;
+            Dictionary<string, double[,]> allDataSet = new Dictionary<string, double[,]>();
+            double[,] bufData = new double[origionalFemaleData.Count, dataYlength];
+           
+            double[,] femaleData = new double[origionalFemaleData.Count, dataYSkipLength];
+           
+            for (int i = 0; i < origionalFemaleData.Count; i++)
+            {
+                int num3 = 0;
+                //截取 41-109,167-484的总共385个数据。
+                for (int j = 41; j < 109; j++)
+                {
+                    bufData[i, num3++] = origionalFemaleData[i][j];
+                }
+                for (int k = 167; k < 484; k++)
+                {
+                    bufData[i, num3++] = origionalFemaleData[i][k];
+                }
+                //每隔m=4个，选一个值进行计算。
+                for (int m = 0; m < dataYSkipLength; m++)
+                {
+                    femaleData[i, m] = bufData[i, m * SpecSkip];
+                }
+            }
+            allDataSet.Add("雌", femaleData);
+
+           
+            bufData= new double[origionalFemaleData.Count, dataYlength];
+            double[,] maleData = new double[origionalMaleData.Count, dataYSkipLength];
+
+            for (int i = 0; i < origionalMaleData.Count; i++)
+            {
+                int num3 = 0;
+                //截取 41-109,167-484的总共385个数据。
+                for (int j = 41; j < 109; j++)
+                {
+                    bufData[i, num3++] = origionalMaleData[i][j];
+                }
+                for (int k = 167; k < 484; k++)
+                {
+                    bufData[i, num3++] = origionalMaleData[i][k];
+                }
+                //每隔m=4个，选一个值进行计算。
+                for (int m = 0; m < dataYSkipLength; m++)
+                {
+                    maleData[i, m] = bufData[i, m * SpecSkip];
+                }
+            }
+            allDataSet.Add("雄", maleData);
+            return allDataSet;
         }
 
         /// <summary>
@@ -87,49 +147,12 @@ namespace test_01
         /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
-            double[,] femaleData = new double[offLineClass.FemaleList.Count, dataYlength];
-            dataYForSelecteSet = new double[offLineClass.FemaleList.Count, dataYSkipLength];
-
-            for (int i = 0; i < offLineClass.FemaleList.Count; i++)
+            string classLabel = "雌";
+            for(int i=0;i<5;i++)
             {
-                int num3 = 0;
-                //截取 41-109,167-484的总共385个数据。
-                for (int j = 41; j < 109; j++)
-                {
-                    femaleData[i, num3++] = offLineClass.FemaleList[i][j];
-                }
-                for (int k = 167; k < 484; k++)
-                {
-                    femaleData[i, num3++] = offLineClass.FemaleList[i][k];
-                }
-                //每隔m=4个，选一个值进行计算。
-                for (int m = 0; m < dataYSkipLength ; m++)
-                {
-                    dataYForSelecteSet[i, m] = femaleData [i, m * this.SpecSkip];
-                }
-
+                bwgAbnormalSample.RunWorkerAsync(classLabel);
             }
-
-
-           int[] reArray=new ripsPreDeal(). maDistanceAbnormalIndex(dataYForSelecteSet, thresholdAbnormal,out femaleMaDistance);
-            //省略去除5个马氏距离最大值的样品。
-            //省略去除大于阈值的样品。
-            if (radioButtonRandom.Checked)
-            {
-                this.selectSet(0,dataYForSelecteSet ,true);
-                selectSetMethod = 0;
-            }
-            else if (radioButtonKS.Checked)
-            {
-                this.selectSet(1,dataYForSelecteSet ,true);
-                selectSetMethod = 1;
-            }
-           
-            
-
         }
-
-       
 
         /// <summary>
         /// 雄性--计算马氏距离
@@ -138,121 +161,211 @@ namespace test_01
         /// <param name="e"></param>
         private void button4_Click(object sender, EventArgs e)
         {
-            double[,] maleData = new double[offLineClass.MaleList .Count, dataYlength];
-            dataYForSelecteSet = new double[offLineClass.MaleList .Count, dataYSkipLength];
-
-            for (int i = 0; i < offLineClass.MaleList .Count; i++)
+            string classLabel = "雄";
+            for (int i = 0; i < 5; i++)
             {
-                int num3 = 0;
-                //截取 41-109,167-484的总共385个数据。
-                for (int j = 41; j < 109; j++)
+                bwgAbnormalSample.RunWorkerAsync(classLabel);
+            }
+        }
+
+        /// <summary>
+        /// 计算马氏距离，并且截去5个马氏距离最大样品，截去超过阈值的样品，截取后放入CutedMaData。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bwgAbnormalSample_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //e的参数为“雌”或者“雄”。
+            double[,] bufData = new double[allOriginalCutedData[e.Argument.ToString()].GetLength(1), allOriginalCutedData[e.Argument.ToString()].GetLength(0)];
+            allOriginalCutedData[e.Argument.ToString()].CopyTo(bufData, 0);
+
+            //截去马氏距离最大的5个样品。
+            double[] maDistance;
+            for (int i = 0; i < 5; i++)
+            {
+                new ripsPreDeal().maDistanceAbnormalIndex(bufData, thresholdAbnormal, out maDistance);
+                double maxMaDistance = maDistance[0];
+                int maxIndex = 0;
+                for (int j = 1; j < maDistance.Length; j++)
                 {
-                    maleData[i, num3++] = offLineClass.MaleList [i][j];
+                    if (maDistance[j] > maxMaDistance)
+                    {
+                        maxIndex = j;
+                        maxMaDistance = maDistance[j];
+                    }
                 }
-                for (int k = 167; k < 484; k++)
+                double[,] cutedData = new double[bufData.GetLength(1) - 1, bufData.GetLength(0)];
+                int cutIndex = 0;
+                for (int m = 0; m < bufData.GetLength(1); m++)
                 {
-                    maleData[i, num3++] = offLineClass.MaleList [i][k];
+                    if (m != maxIndex)
+                    {
+                        for (int n = 0; n < bufData.GetLength(0); n++)
+                        {
+
+                            cutedData[cutIndex, n] = bufData[m, n];
+                        }
+                        cutIndex++;
+                    }
                 }
-                //每隔m=4个，选一个值进行计算。
-                for (int m = 0; m < dataYSkipLength; m++)
-                {
-                    dataYForSelecteSet[i, m] = maleData[i, m * this.SpecSkip];
-                }
+                bufData = cutedData;
 
             }
 
+            int[] reArray = new ripsPreDeal().maDistanceAbnormalIndex(bufData, thresholdAbnormal, out maDistance);
+            //去掉超过马氏距离阈值的部分
+            if (reArray.Length > 0)
+            {
+                double[,] cutedData = new double[bufData.GetLength(1) - reArray.Length, bufData.GetLength(0)];
+                int cutIndex = 0;
+                for (int m = 0; m < bufData.GetLength(1); m++)
+                {
+                    bool docopy = true;
+                    for (int skipIndex = 0; skipIndex < reArray.Length; skipIndex++)
+                    {
+                        if (m == reArray[skipIndex])
+                            docopy = false;
+                    }
+                    if (docopy)
+                    {
+                        for (int n = 0; n < bufData.GetLength(0); n++)
+                        {
+                            cutedData[cutIndex, n] = bufData[m, n];
+                        }
+                        cutIndex++;
+                    }
+                }
+                bufData = cutedData;
+            }
+            if (CutedMaData.ContainsKey(e.Argument.ToString()))
+            {
+                CutedMaData[e.Argument.ToString()] = bufData;
+            }
+            else
+            {
+                CutedMaData.Add(e.Argument.ToString(), bufData);
+            }
+            e.Result = e.Argument;//传递样品的种类。
 
-            int[] reArray = new ripsPreDeal().maDistanceAbnormalIndex(dataYForSelecteSet, thresholdAbnormal, out maleMaDistance);
-            //省略去除5个马氏距离最大值的样品。
-            //省略去除大于阈值的样品。
+        }
+
+        /// <summary>
+        /// 使用随机法，或者K-S法分 DataCaliSet 和 DataValiSet.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bwgAbnormalSample_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
             if (radioButtonRandom.Checked)
             {
-                this.selectSet(0, dataYForSelecteSet, false);
+                this.selectSet(0, e.Result.ToString());
                 selectSetMethod = 0;
             }
             else if (radioButtonKS.Checked)
             {
-                this.selectSet(1, dataYForSelecteSet, false);
+                this.selectSet(1, e.Result.ToString());
                 selectSetMethod = 1;
             }
+            Settings.Default.selectSetCount = this.domainUpDown2.SelectedIndex;
+            Settings.Default.Save();
 
         }
 
-
-
-        private void selectSet(int selectSetMethod, double[,] data, bool female)
+        /// <summary>
+        /// 执行随机法，或者K-S法分 DataCaliSet 和 DataValiSet.
+        /// </summary>
+        /// <param name="selectSetMethod"></param>
+        /// <param name="classLabel"></param>
+        private void selectSet(int selectSetMethod,string classLabel)
         {
-            
                 int[] numArray2;
                 int[] numArray3;
-                double d = selectSetCount * data.GetLength(0);
+                double d = selectSetCount * CutedMaData[classLabel ].GetLength(0);
                 int nC = (int)Math.Floor(d);
-                double[,] x = new double[this.dataYForSelecteSet.GetLength(0), this.dataYForSelecteSet.GetLength(1)];
-                for (int i = 0; i < x.GetLength(0); i++)
+                double[,] data = new double[CutedMaData[classLabel].GetLength(0), CutedMaData[classLabel].GetLength(1)];
+                for (int i = 0; i < data.GetLength(0); i++)
                 {
-                    for (int m = 0; m < x.GetLength(1); m++)
+                    for (int m = 0; m < data.GetLength(1); m++)
                     {
-                        x[i, m] = this.dataYForSelecteSet[i, m];
+                        data[i, m] = CutedMaData[classLabel][i, m];
                     }
                 }
-                ripsPreDeal deal = new ripsPreDeal(x.GetLength(0), x.GetLength(1));
+                ripsPreDeal deal = new ripsPreDeal(data.GetLength(0), data.GetLength(1));
                 if (selectSetMethod == 0)
                 {
-                    deal.RandomSet(nC, x, out numArray2, out numArray3);
+                    deal.RandomSet(nC, data, out numArray2, out numArray3);
                 }
                 else
                 {
-                    deal.KennardStone(nC, x, out numArray2, out numArray3);
+                    deal.KennardStone(nC, data, out numArray2, out numArray3);
                 }
 
-                if (female)
+                //if (female)
+                //{
+
+                   double[,] CaliData = new double[numArray2.Length, data.GetLength(1)];
+                   double[,] ValiData = new double[numArray3.Length, data.GetLength(1)];
+            for (int j = 0; j < numArray2.Length; j++)
+            {
+                for (int m = 0; m < data.GetLength(1); m++)
                 {
-
-                    femaleCalData = new double[numArray2.Length, data.GetLength(1)];
-                    femaleValData = new double[numArray3.Length, data.GetLength(1)];
-                    for (int j = 0; j < numArray2.Length; j++)
-                    {
-                        for (int m = 0; m < data.GetLength(1); m++)
-                        {
-                            femaleCalData[j, m] = data[numArray2[j], m];
-                        }
-
-                    }
-                    for (int k = 0; k < numArray3.Length; k++)
-                    {
-                        for (int m = 0; m < data.GetLength(1); m++)
-                        {
-                            femaleValData[k, m] = data[numArray3[k], m];
-                        }
-
-                    }
-                    DataCaliSet.Add("雌", femaleCalData);
-                    DataValiSet.Add("雌", femaleValData);
+                    CaliData[j, m] = data[numArray2[j], m];
                 }
-                else
+
+            }
+            for (int k = 0; k < numArray3.Length; k++)
+            {
+                for (int m = 0; m < data.GetLength(1); m++)
                 {
-                    maleCalData = new double[numArray2.Length, data.GetLength(1)];
-                    maleValData = new double[numArray3.Length, data.GetLength(1)];
-                    for (int j = 0; j < numArray2.Length; j++)
-                    {
-                        for (int m = 0; m < data.GetLength(1); m++)
-                        {
-                            maleCalData[j, m] = data[numArray2[j], m];
-                        }
-
-                    }
-                    for (int k = 0; k < numArray3.Length; k++)
-                    {
-                        for (int m = 0; m < data.GetLength(1); m++)
-                        {
-                            maleValData[k, m] = data[numArray3[k], m];
-                        }
-
-                    }
-                    DataCaliSet.Add("雄", maleCalData);
-                    DataValiSet.Add("雄", maleValData);
+                    ValiData[k, m] = data[numArray3[k], m];
                 }
-            
+
+            }
+
+            if(DataCaliSet .ContainsKey (classLabel ))
+            {
+                DataCaliSet[classLabel] = CaliData;
+            }
+            else
+            {
+                DataCaliSet.Add(classLabel, CaliData);
+            }
+            if(DataValiSet .ContainsKey (classLabel ))
+            {
+                DataValiSet[classLabel] = ValiData;
+            }
+            else
+            {
+                DataValiSet.Add(classLabel, ValiData);
+            }
+
+            //DataCaliSet.Add("雌", femaleCalData);
+            //DataValiSet.Add("雌", femaleValData);
+            //}
+            //else
+            //{
+            //    maleCalData = new double[numArray2.Length, data.GetLength(1)];
+            //    maleValData = new double[numArray3.Length, data.GetLength(1)];
+            //    for (int j = 0; j < numArray2.Length; j++)
+            //    {
+            //        for (int m = 0; m < data.GetLength(1); m++)
+            //        {
+            //            maleCalData[j, m] = data[numArray2[j], m];
+            //        }
+
+            //    }
+            //    for (int k = 0; k < numArray3.Length; k++)
+            //    {
+            //        for (int m = 0; m < data.GetLength(1); m++)
+            //        {
+            //            maleValData[k, m] = data[numArray3[k], m];
+            //        }
+
+            //    }
+            //    //DataCaliSet.Add("雄", maleCalData);
+            //    //DataValiSet.Add("雄", maleValData);
+            //}
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -486,15 +599,15 @@ namespace test_01
                             {
                                 numArray9[num13] = numArray8[num13 * this.SpecSkip];
                             }
-                            //if (this.DataValiSet.ContainsKey(key))
-                            //{
-                            //    this.DataValiSet[key] = new double[numArray9.Length];
-                            //    numArray9.CopyTo(this.DataValiSet[key], 0);
-                            //}
-                            //else
-                            //{
-                            //    this.DataValiSet.Add(key, numArray9);
-                            //}
+                            if (this.DataValiSet.ContainsKey(key))
+                            {
+                                this.DataValiSet[key] = new double[numArray9.Length];
+                                numArray9.CopyTo(this.DataValiSet[key], 0);
+                            }
+                            else
+                            {
+                                this.DataValiSet.Add(key, numArray9);
+                            }
                             if (this.DataValiSetName.ContainsKey(key))
                             {
                                 this.DataValiSetName[key] = pair2.Key.ToString();
@@ -511,7 +624,12 @@ namespace test_01
 
         }
 
-         
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            allOriginalCutedData = cutOrigionalData(originalFemaleData, originalMaleData);
+        }
+
         private void bgwCrossBySimca_DoWork(object sender, DoWorkEventArgs e)
         {
             int[] numArray = new int[this.classLabel.Count];

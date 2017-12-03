@@ -10,24 +10,25 @@ namespace test_01
 {
     public class Process_FitOffLine
     {
-        public List<double[]> FemaleList = new List<double[]>();
+      
 
-        public List<double[]> MaleList = new List<double[]>();
+        //public List<double[]> MaleList = new List<double[]>();
 
-        public List<double[]> unSeeData = new List<double[]>();
+        //public List<double[]> unSeeData = new List<double[]>();
 
-        public List<double[]> simDataList = new List<double[]>();
+        //public List<double[]> simDataList = new List<double[]>();
 
-        int femaleCount, maleCount;
-
-
+       // int femaleCount, maleCount;
 
 
 
-        public void loadFemalTrainData()
+
+
+        public List<double[]> loadData()
         {
-            FemaleList.Clear();
-            femaleCount = 0;
+            List<double[]> dataList = new List<double[]>();
+            //  FemaleList.Clear();
+           int  Count = 0;
 
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "(*.txt)|*.txt|(*.*)|*.*";
@@ -41,7 +42,7 @@ namespace test_01
                 for (int i = 0; i < names.Length; i++)
                 {
                     arr2.Clear();
-                    femaleCount++;
+                    Count++;
                     FileStream fs = new FileStream(names[i], FileMode.Open);
                     StreamReader sr = new StreamReader(fs);
 
@@ -60,7 +61,7 @@ namespace test_01
                         }
                         //double[] bfwavelength = arr1.ToArray();
                         double[] bfspec = arr2.ToArray();
-                        FemaleList.Add(bfspec);
+                        dataList.Add(bfspec);
                     }
                     catch (Exception ex)
                     {
@@ -74,58 +75,59 @@ namespace test_01
                 }
             }
             ofd.Dispose();
+            return dataList;
         }
 
-        public void loadMaleTrainData()
-        {
-            MaleList.Clear();
-            maleCount = 0;
+        //public void loadMaleTrainData()
+        //{
+        //    MaleList.Clear();
+        //    maleCount = 0;
 
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "(*.txt)|*.txt|(*.*)|*.*";
-            ofd.RestoreDirectory = true;
-            ofd.Multiselect = true;
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                String[] names = ofd.FileNames;
-                //List<Double> arr1 = new List<Double>();
-                List<Double> arr2 = new List<Double>();
-                for (int i = 0; i < names.Length; i++)
-                {
-                    arr2.Clear();
-                    maleCount++;
-                    FileStream fs = new FileStream(names[i], FileMode.Open);
-                    StreamReader sr = new StreamReader(fs);
-                    try
-                    {
-                        string line = sr.ReadLine();
-                        while (line != null)
-                        {
+        //    OpenFileDialog ofd = new OpenFileDialog();
+        //    ofd.Filter = "(*.txt)|*.txt|(*.*)|*.*";
+        //    ofd.RestoreDirectory = true;
+        //    ofd.Multiselect = true;
+        //    if (ofd.ShowDialog() == DialogResult.OK)
+        //    {
+        //        String[] names = ofd.FileNames;
+        //        //List<Double> arr1 = new List<Double>();
+        //        List<Double> arr2 = new List<Double>();
+        //        for (int i = 0; i < names.Length; i++)
+        //        {
+        //            arr2.Clear();
+        //            maleCount++;
+        //            FileStream fs = new FileStream(names[i], FileMode.Open);
+        //            StreamReader sr = new StreamReader(fs);
+        //            try
+        //            {
+        //                string line = sr.ReadLine();
+        //                while (line != null)
+        //                {
 
-                            String[] a = line.Split(' ');
-                            //arr1.Add(double.Parse(a[0]));
-                            arr2.Add(double.Parse(a[1]));
+        //                    String[] a = line.Split(' ');
+        //                    //arr1.Add(double.Parse(a[0]));
+        //                    arr2.Add(double.Parse(a[1]));
 
 
-                            line = sr.ReadLine();
-                        }
-                        //double[] bfwavelength = arr1.ToArray();
-                        double[] bfspec = arr2.ToArray();
-                        MaleList.Add(bfspec);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message.ToString());
-                    }
-                    finally
-                    {
-                        sr.Close();
-                        fs.Close();
-                    }
-                }
-            }
-            ofd.Dispose();
-        }
+        //                    line = sr.ReadLine();
+        //                }
+        //                //double[] bfwavelength = arr1.ToArray();
+        //                double[] bfspec = arr2.ToArray();
+        //                MaleList.Add(bfspec);
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                MessageBox.Show(ex.Message.ToString());
+        //            }
+        //            finally
+        //            {
+        //                sr.Close();
+        //                fs.Close();
+        //            }
+        //        }
+        //    }
+        //    ofd.Dispose();
+        //}
 
         //public void doTrain()
         //{
@@ -134,56 +136,56 @@ namespace test_01
         //    Process_MatlabNet.svmTrain_matlab(specList1, specList2);
         //}
 
-        public void loadSimData()
-        {
-            simDataList.Clear();
-            //maleCount = 0;
+        //public void loadSimData()
+        //{
+        //    simDataList.Clear();
+        //    //maleCount = 0;
 
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "(*.txt)|*.txt|(*.*)|*.*";
-            ofd.RestoreDirectory = true;
-            ofd.Multiselect = true;
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                String[] names = ofd.FileNames;
-                //List<Double> arr1 = new List<Double>();
-                List<Double> arr2 = new List<Double>();
-                for (int i = 0; i < names.Length; i++)
-                {
-                    arr2.Clear();
-                    //maleCount++;
-                    FileStream fs = new FileStream(names[i], FileMode.Open);
-                    StreamReader sr = new StreamReader(fs);
-                    try
-                    {
-                        string line = sr.ReadLine();
-                        while (line != null)
-                        {
+        //    OpenFileDialog ofd = new OpenFileDialog();
+        //    ofd.Filter = "(*.txt)|*.txt|(*.*)|*.*";
+        //    ofd.RestoreDirectory = true;
+        //    ofd.Multiselect = true;
+        //    if (ofd.ShowDialog() == DialogResult.OK)
+        //    {
+        //        String[] names = ofd.FileNames;
+        //        //List<Double> arr1 = new List<Double>();
+        //        List<Double> arr2 = new List<Double>();
+        //        for (int i = 0; i < names.Length; i++)
+        //        {
+        //            arr2.Clear();
+        //            //maleCount++;
+        //            FileStream fs = new FileStream(names[i], FileMode.Open);
+        //            StreamReader sr = new StreamReader(fs);
+        //            try
+        //            {
+        //                string line = sr.ReadLine();
+        //                while (line != null)
+        //                {
 
-                            String[] a = line.Split(' ');
-                            //arr1.Add(double.Parse(a[0]));
-                            arr2.Add(double.Parse(a[1]));
+        //                    String[] a = line.Split(' ');
+        //                    //arr1.Add(double.Parse(a[0]));
+        //                    arr2.Add(double.Parse(a[1]));
 
 
-                            line = sr.ReadLine();
-                        }
-                        //double[] bfwavelength = arr1.ToArray();
-                        double[] bfspec = arr2.ToArray();
-                        simDataList.Add(bfspec);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message.ToString());
-                    }
-                    finally
-                    {
-                        sr.Close();
-                        fs.Close();
-                    }
-                }
-            }
-            ofd.Dispose();
-        }
+        //                    line = sr.ReadLine();
+        //                }
+        //                //double[] bfwavelength = arr1.ToArray();
+        //                double[] bfspec = arr2.ToArray();
+        //                simDataList.Add(bfspec);
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                MessageBox.Show(ex.Message.ToString());
+        //            }
+        //            finally
+        //            {
+        //                sr.Close();
+        //                fs.Close();
+        //            }
+        //        }
+        //    }
+        //    ofd.Dispose();
+        //}
         //public double[] doSim()
         //    {
         //    double[] outData= new double[simDataList.Count];
@@ -197,57 +199,57 @@ namespace test_01
         //}
 
 
-        public void loadUnseeData()
-        {
-            unSeeData.Clear();
-            femaleCount = 0;
+        //public void loadUnseeData()
+        //{
+        //    unSeeData.Clear();
+        //    femaleCount = 0;
 
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "(*.txt)|*.txt|(*.*)|*.*";
-            ofd.RestoreDirectory = true;
-            ofd.Multiselect = true;
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                String[] names = ofd.FileNames;
-                // List<Double> arr1 = new List<Double>();
-                List<Double> arr2 = new List<Double>();
-                for (int i = 0; i < names.Length; i++)
-                {
-                    arr2.Clear();
-                    femaleCount++;
-                    FileStream fs = new FileStream(names[i], FileMode.Open);
-                    StreamReader sr = new StreamReader(fs);
+        //    OpenFileDialog ofd = new OpenFileDialog();
+        //    ofd.Filter = "(*.txt)|*.txt|(*.*)|*.*";
+        //    ofd.RestoreDirectory = true;
+        //    ofd.Multiselect = true;
+        //    if (ofd.ShowDialog() == DialogResult.OK)
+        //    {
+        //        String[] names = ofd.FileNames;
+        //        // List<Double> arr1 = new List<Double>();
+        //        List<Double> arr2 = new List<Double>();
+        //        for (int i = 0; i < names.Length; i++)
+        //        {
+        //            arr2.Clear();
+        //            femaleCount++;
+        //            FileStream fs = new FileStream(names[i], FileMode.Open);
+        //            StreamReader sr = new StreamReader(fs);
 
-                    try
-                    {
-                        string line = sr.ReadLine();
-                        while (line != null)
-                        {
+        //            try
+        //            {
+        //                string line = sr.ReadLine();
+        //                while (line != null)
+        //                {
 
-                            String[] a = line.Split(' ');
+        //                    String[] a = line.Split(' ');
 
-                            //arr1.Add(double.Parse(a[0]));
-                            arr2.Add(double.Parse(a[1]));
+        //                    //arr1.Add(double.Parse(a[0]));
+        //                    arr2.Add(double.Parse(a[1]));
 
-                            line = sr.ReadLine();
-                        }
-                        //double[] bfwavelength = arr1.ToArray();
-                        double[] bfspec = arr2.ToArray();
-                        unSeeData.Add(bfspec);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message.ToString());
-                    }
-                    finally
-                    {
-                        sr.Close();
-                        fs.Close();
-                    }
-                }
-            }
-            ofd.Dispose();
-        }
+        //                    line = sr.ReadLine();
+        //                }
+        //                //double[] bfwavelength = arr1.ToArray();
+        //                double[] bfspec = arr2.ToArray();
+        //                unSeeData.Add(bfspec);
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                MessageBox.Show(ex.Message.ToString());
+        //            }
+        //            finally
+        //            {
+        //                sr.Close();
+        //                fs.Close();
+        //            }
+        //        }
+        //    }
+        //    ofd.Dispose();
+        //}
 
     }
 }

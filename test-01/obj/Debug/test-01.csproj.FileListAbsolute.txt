@@ -20,3 +20,14 @@ E:\软件Programs\C#\BeiJinSilk\test-01\obj\Debug\test_01.Properties.Resources.r
 E:\软件Programs\C#\BeiJinSilk\test-01\obj\Debug\test-01.csproj.GenerateResource.Cache
 E:\软件Programs\C#\BeiJinSilk\test-01\obj\Debug\test-01.exe
 E:\软件Programs\C#\BeiJinSilk\test-01\obj\Debug\test-01.pdb
+C:\Users\Administrator\Desktop\BeiJinSilk\test-01\bin\Debug\test-01.exe.config
+C:\Users\Administrator\Desktop\BeiJinSilk\test-01\bin\Debug\test-01.exe
+C:\Users\Administrator\Desktop\BeiJinSilk\test-01\bin\Debug\test-01.pdb
+C:\Users\Administrator\Desktop\BeiJinSilk\test-01\bin\Debug\MWArray.dll
+C:\Users\Administrator\Desktop\BeiJinSilk\test-01\bin\Debug\SIMCA.dll
+C:\Users\Administrator\Desktop\BeiJinSilk\test-01\obj\Debug\test-01.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\BeiJinSilk\test-01\obj\Debug\test_01.Form1.resources
+C:\Users\Administrator\Desktop\BeiJinSilk\test-01\obj\Debug\test_01.Properties.Resources.resources
+C:\Users\Administrator\Desktop\BeiJinSilk\test-01\obj\Debug\test-01.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\BeiJinSilk\test-01\obj\Debug\test-01.exe
+C:\Users\Administrator\Desktop\BeiJinSilk\test-01\obj\Debug\test-01.pdb
