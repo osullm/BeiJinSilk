@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "活体雌雄蚕蛹判别系统建模软件", "活体雌雄蚕蛹判别系统建模软件.csproj", "{1F6F8E22-4BA1-4BA0-98CA-7250F5F19CC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "silk", "silk.csproj", "{1F6F8E22-4BA1-4BA0-98CA-7250F5F19CC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-01", "..\test-01\test-01.csproj", "{6BEBCB1A-FE78-4A5A-AB79-7E98DF48DF93}"
 EndProject
